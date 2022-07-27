@@ -8,36 +8,25 @@ const Form = () => {
         title: "",
         body: "",
       });
-      const [users, setUsers] = useState([
+    const [users, setUsers] = useState([
         {
           id: 1,
           title: "리액트",
           body: "리액트 공부를 합시다",
+          isDone: false
         },
-        // {
-        //   id: 2,
-        //   title: "ultra",
-        //   body: "asd",
-        // },
-        // {
-        //   id: 3,
-        //   title: "hozae",
-        //   body: "asd",
-        // },
       ]);
-    
-
-     const { title, body } = inputs;
       
-      const nextId = useRef(4);
+    const { title, body } = inputs;
+    const nextId = useRef(4);
     
-      const onChange = (e) => {
-        const { name, value } = e.target;
-        setInputs({
-          ...inputs,
-          [name]: value,
-        });
-      };
+    const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+        ...inputs,
+        [name]: value,
+    });
+    };
     
       const onCreate = () => {
         const user = {
@@ -47,16 +36,17 @@ const Form = () => {
         };
     
         setUsers([...users, user]);
-        //또는 setUsers(users.concat(user));
     
         setInputs({
           title: "",
           body: "",
+          isDone: false
         });
         nextId.current += 1;
+        
     }
 
-   
+    
    
     return (
         <>
@@ -78,7 +68,7 @@ const Form = () => {
                 <button className="btn1" onClick={onCreate}>추가하기</button>
         
             </div>
-        <List users={users}/>
+        <List users={users} setUsers={setUsers} />
         </>
         
    )
