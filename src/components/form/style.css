@@ -1,5 +1,5 @@
-.form {
-    background-color: #eee;
+.form-box {
+    background-color: hsl(0, 4%, 80%);
     border-radius: 12px;
     justify-content: space-between;
     margin: 0 auto;
@@ -23,7 +23,7 @@
     display: flex;
 }
 
-.add-button {
+.btn1 {
     background-color: teal;
     border: none;
     border-radius: 10px;
@@ -31,6 +31,8 @@
     font-weight: 700;
     height: 40px;
     width: 140px;
+    margin-left: 20em;
+    
 }
 
 .form .input-group {

@@ -1,59 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./style.css"
+import { List } from "../list/List";
 
 
-
-const Form = (props) => {
-    // const [todos, setTodos] = useState([
-    //     { id : 0, title: 'asd', body : 'asd', isDone : false},
-    // ]);
-    // const [title, setTitle] = useState('');
-    // const [body, setBody] = useState('');
-    const [todos, setTodos] = useState({
-        
+const Form = () => {
+    const [inputs, setInputs] = useState({
+        title: "",
         body: "",
-        title = ""
-    });
-    const {title, body} = todos
+      });
+      const [users, setUsers] = useState([
+        {
+          id: 1,
+          title: "리액트",
+          body: "리액트 공부를 합시다",
+        },
+        // {
+        //   id: 2,
+        //   title: "ultra",
+        //   body: "asd",
+        // },
+        // {
+        //   id: 3,
+        //   title: "hozae",
+        //   body: "asd",
+        // },
+      ]);
     
-   const handleChange = (e) => {
-    if (e.target.name === 'title'){
-        setTitle(e.target.value) 
-    }else {
-        setBody(e.target.value)
-   }
-    };
 
-    const hanelSubmit = (e) => {
-        e.preventDefault();
-        setTodos([...todos, { id: hanelSubmit.length + 1, title, body, isDone: false}]);
-        setTitle('');
-        setBody('');
-    };
+     const { title, body } = inputs;
+      
+      const nextId = useRef(4);
     
-   console.log(title,body);
+      const onChange = (e) => {
+        const { name, value } = e.target;
+        setInputs({
+          ...inputs,
+          [name]: value,
+        });
+      };
+    
+      const onCreate = () => {
+        const user = {
+          id: nextId.current,
+          title,
+          body,
+        };
+    
+        setUsers([...users, user]);
+        //또는 setUsers(users.concat(user));
+    
+        setInputs({
+          title: "",
+          body: "",
+        });
+        nextId.current += 1;
+    }
 
-    
+   
+   
     return (
+        <>
+            <div className="form-box">
+                <input
+                    type = 'text'
+                    value={title}
+                    placeholder="title"
+                    name="title"
+                    onChange={onChange}
+                />
+                <input
+                    type = 'text'
+                    value={body}
+                    placeholder="body"
+                    name="body"
+                    onChange={onChange}
+                />
+                <button className="btn1" onClick={onCreate}>추가하기</button>
         
-        <form onSubmit={(e)=> handleSubmit(e)}>
-            <input
-                value={title}
-                placeholder="title"
-                name="title"
-                onChange={handleChange}
-            />
-            <input
-                value={body}
-                placeholder="body"
-                name="body"
-                onChange={handleChange}
-            />
-
-
-        <button className="add-button" type='submit'>추가하기</button>
-        </form>
+            </div>
+        <List users={users}/>
+        </>
         
    )
-}
+    }
+
   export {Form};
