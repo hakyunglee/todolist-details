@@ -9,24 +9,6 @@ const List = ({users, setUsers}) => {
     
       
       console.log(users.Id);
-    // const deleteHandler = (todoId) => {
-    //     const newTodos = todos.filter((todo) => {
-    //         return todo.id !== todoId;
-    //     });
-
-    // }
-    
-    // const onRemove = id => {
-
-    //     setTodos(todos => todos.filter(todos.id !== id));
-    // }
-
-    
-//     function List({users, setUsers}) {
-//         const onDeleteHandler = (userId) => {
-//             return users.id !== users.id
-//         }
-//     }
 
     
 
